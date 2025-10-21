@@ -95,3 +95,13 @@ services:
       gluetun:
         condition: service_healthy
     restart: unless-stopped
+
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr:latest
+    container_name: recyclarr
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /volume2/docker/data/recyclarr/config:/config
+    restart: unless-stopped

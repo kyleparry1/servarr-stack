@@ -17,7 +17,6 @@ services:
       SERVER_COUNTRIES: Switzerland
       VPN_PORT_FORWARDING: on
       VPN_PORT_FORWARDING_PROVIDER: protonvpn
-      EXTRA_SUBNETS: 192.168.0.0/16
     cap_add:
       - NET_ADMIN
     healthcheck:

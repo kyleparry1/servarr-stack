@@ -112,6 +112,20 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    ports:
+      - "5055:5055"
+    environment:
+      TZ: ${TZ}
+      PUID: ${PUID}
+      PGID: ${PGID}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /volume2/docker/data/overseerr/config:/config
+    restart: unless-stopped
+
   recyclarr:
     image: ghcr.io/recyclarr/recyclarr:latest
     container_name: recyclarr

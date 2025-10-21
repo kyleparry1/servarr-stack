@@ -32,10 +32,7 @@ services:
     image: lscr.io/linuxserver/nzbget:latest
     container_name: nzbget
     network_mode: service:gluetun
-    environment:
-      TZ: ${TZ}
-      PUID: ${PUID}
-      PGID: ${PGID}
+    env_file: .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/nzbget/config:/config
@@ -66,10 +63,7 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     network_mode: service:gluetun
-    environment:
-      TZ: ${TZ}
-      PUID: ${PUID}
-      PGID: ${PGID}
+    env_file: .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/prowlarr/config:/config
@@ -82,10 +76,7 @@ services:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     network_mode: service:gluetun
-    environment:
-      TZ: ${TZ}
-      PUID: ${PUID}
-      PGID: ${PGID}
+    env_file: .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/sonarr/config:/config
@@ -99,10 +90,7 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     network_mode: service:gluetun
-    environment:
-      TZ: ${TZ}
-      PUID: ${PUID}
-      PGID: ${PGID}
+    env_file: .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/radarr/config:/config
@@ -117,13 +105,22 @@ services:
     container_name: overseerr
     ports:
       - "5055:5055"
-    environment:
-      TZ: ${TZ}
-      PUID: ${PUID}
-      PGID: ${PGID}
+    env_file: .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/overseerr/config:/config
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    ports:
+      - "6767:6767"
+    env_file: .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /volume2/docker/data/bazarr/config:/config
+      - /volume1/data:/data
     restart: unless-stopped
 
   recyclarr:

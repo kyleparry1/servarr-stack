@@ -5,6 +5,7 @@ services:
     image: qmcgaw/gluetun:latest
     container_name: gluetun
     ports:
+      - "6789:6789" # nzbget
       - "7878:7878" # radarr
       - "8880:8880" # qbittorrent
       - "8989:8989" # sonarr
@@ -25,6 +26,21 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    restart: unless-stopped
+
+  nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
+    network_mode: service:gluetun
+    environment:
+      TZ: ${TZ}
+      PUID: ${PUID}
+      PGID: ${PGID}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /volume2/docker/data/nzbget/config:/config
+      - /volume1/data:/data
+      - /volume2/temp:/temp
     restart: unless-stopped
 
   qbittorrent:

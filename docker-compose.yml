@@ -26,6 +26,10 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    labels:
+      homepage.group: Servarr
+      homepage.name: Gluetun
+      homepage.icon: gluetun.png
     restart: unless-stopped
 
   nzbget:
@@ -38,6 +42,10 @@ services:
       - /volume2/docker/data/nzbget/config:/config
       - /volume1/data:/data
       - /volume2/temp:/temp
+    labels:
+      homepage.group: Servarr
+      homepage.name: NZBGet
+      homepage.icon: nzbget.png
     restart: unless-stopped
 
   qbittorrent:
@@ -57,6 +65,10 @@ services:
     depends_on:
       gluetun:
         condition: service_healthy
+    labels:
+      homepage.group: Servarr
+      homepage.name: qBittorrent
+      homepage.icon: qbittorrent.png
     restart: unless-stopped
 
   prowlarr:
@@ -70,6 +82,10 @@ services:
     depends_on:
       gluetun:
         condition: service_healthy
+    labels:
+      homepage.group: Servarr
+      homepage.name: Prowlarr
+      homepage.icon: prowlarr.png
     restart: unless-stopped
 
   sonarr:
@@ -84,6 +100,10 @@ services:
     depends_on:
       gluetun:
         condition: service_healthy
+    labels:
+      homepage.group: Servarr
+      homepage.name: Sonarr
+      homepage.icon: sonarr.png
     restart: unless-stopped
 
   radarr:
@@ -98,6 +118,10 @@ services:
     depends_on:
       gluetun:
         condition: service_healthy
+    labels:
+      homepage.group: Servarr
+      homepage.name: Radarr
+      homepage.icon: radarr.png
     restart: unless-stopped
 
   overseerr:
@@ -109,6 +133,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/overseerr/config:/config
+    labels:
+      homepage.group: Servarr
+      homepage.name: Overseerr
+      homepage.icon: overseerr.png
     restart: unless-stopped
 
   bazarr:
@@ -121,6 +149,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/bazarr/config:/config
       - /volume1/data:/data
+    labels:
+      homepage.group: Servarr
+      homepage.name: Bazarr
+      homepage.icon: bazarr.png
     restart: unless-stopped
 
   recyclarr:
@@ -131,4 +163,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/recyclarr/config:/config
+    labels:
+      homepage.group: Servarr
+      homepage.name: Recyclarr
+      homepage.icon: recyclarr.png
     restart: unless-stopped

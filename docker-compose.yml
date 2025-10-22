@@ -26,9 +26,7 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      homepage.group: Servarr
-      homepage.name: Gluetun
-      homepage.icon: gluetun.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   nzbget:
@@ -42,9 +40,7 @@ services:
       - /volume1/data:/data
       - /volume2/temp:/temp
     labels:
-      homepage.group: Servarr
-      homepage.name: NZBGet
-      homepage.icon: nzbget.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   qbittorrent:
@@ -65,9 +61,7 @@ services:
       gluetun:
         condition: service_healthy
     labels:
-      homepage.group: Servarr
-      homepage.name: qBittorrent
-      homepage.icon: qbittorrent.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   prowlarr:
@@ -82,9 +76,7 @@ services:
       gluetun:
         condition: service_healthy
     labels:
-      homepage.group: Servarr
-      homepage.name: Prowlarr
-      homepage.icon: prowlarr.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   sonarr:
@@ -100,9 +92,7 @@ services:
       gluetun:
         condition: service_healthy
     labels:
-      homepage.group: Servarr
-      homepage.name: Sonarr
-      homepage.icon: sonarr.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   radarr:
@@ -118,9 +108,7 @@ services:
       gluetun:
         condition: service_healthy
     labels:
-      homepage.group: Servarr
-      homepage.name: Radarr
-      homepage.icon: radarr.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   overseerr:
@@ -133,9 +121,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/overseerr/config:/config
     labels:
-      homepage.group: Servarr
-      homepage.name: Overseerr
-      homepage.icon: overseerr.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   bazarr:
@@ -149,9 +135,7 @@ services:
       - /volume2/docker/data/bazarr/config:/config
       - /volume1/data:/data
     labels:
-      homepage.group: Servarr
-      homepage.name: Bazarr
-      homepage.icon: bazarr.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
 
   recyclarr:
@@ -163,7 +147,5 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /volume2/docker/data/recyclarr/config:/config
     labels:
-      homepage.group: Servarr
-      homepage.name: Recyclarr
-      homepage.icon: recyclarr.png
+      deunhealth.restart.on.unhealthy: "true"
     restart: unless-stopped
